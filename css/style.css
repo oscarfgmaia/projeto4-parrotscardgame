@@ -1,14 +1,15 @@
-body{
+body {
     font-family: 'Roboto', sans-serif;
     background-color: #EEF9BF;
 }
 
-.SITE-CONTAINER{
+.SITE-CONTAINER {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.titulo{
+
+.titulo {
     margin-top: 40px;
     margin-bottom: 40px;
     font-family: Roboto;
@@ -16,10 +17,11 @@ body{
     font-weight: 700;
     line-height: 66px;
     letter-spacing: -0.004em;
-    color:#75B79E;
+    color: #75B79E;
     text-align: center;
 }
-.CARD-CONTAINER{
+
+.CARD-CONTAINER {
     display: flex;
     justify-content: center;
     background-color: red;
@@ -27,18 +29,47 @@ body{
     width: 50%;
     text-align: center;
 }
-.card{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+.card {
     width: 117px;
     height: 146px;
+    border-radius: 5px;
+    margin: 17px 17px;
+    position: relative;
+}
+
+.face {
     background-color: #A7E9AF;
     box-sizing: border-box;
     border: 1px solid #99CEA8;
-    border-radius: 5px;
-    margin: 17px 17px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
 }
-.hide{
-    display: none;
+
+.back-face img{
+    width: 80%;
+    height: 80%;
+}
+
+.back-face{
+    transform: rotateY(-180deg);
+}
+
+.front-face{
+    transform: rotateY(0eg);
+}
+
+.front-face.turn{
+    transform: rotateY(-180deg);
+}
+
+.back-face.turn{
+    transform: rotateY(0deg);
 }
