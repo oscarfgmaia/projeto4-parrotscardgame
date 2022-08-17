@@ -1,75 +1,80 @@
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #EEF9BF;
+  font-family: "Roboto", sans-serif;
+  background-color: #eef9bf;
 }
 
 .SITE-CONTAINER {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.centralizar-titulo{
+  box-sizing: border-box;
+  justify-content: center;
+  padding: 20px;
 }
 
 .titulo {
-    margin-top: 40px;
-    margin-bottom: 40px;
-    font-family: Roboto;
-    font-size: 56px;
-    font-weight: 700;
-    line-height: 66px;
-    letter-spacing: -0.004em;
-    color: #75B79E;
-    text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 66px;
+  letter-spacing: -0.004em;
+  color: #75b79e;
+  text-align: center;
 }
 
 .CARD-CONTAINER {
-    display: flex;
-    justify-content: center;
-    background-color: red;
-    flex-wrap: wrap;
-    width: 50%;
-    text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 50%;
+  text-align: center;
 }
 
 .card {
-    width: 117px;
-    height: 146px;
-    border-radius: 5px;
-    margin: 17px 17px;
-    position: relative;
+  width: 117px;
+  height: 146px;
+  border-radius: 5px;
+  margin: 17px 17px;
+  position: relative;
 }
 
 .face {
-    background-color: #A7E9AF;
-    box-sizing: border-box;
-    border: 1px solid #99CEA8;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    backface-visibility: hidden;
-    transition: all .5s;
-    transform-style: preserve-3d;
+  border-radius: 5px;
+  background-color: #a7e9af;
+  box-sizing: border-box;
+  border: 1px solid #99cea8;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  backface-visibility: hidden;
+  transition: all 0.5s;
+  transform-style: preserve-3d;
 }
 
-.back-face img{
-    width: 80%;
-    height: 80%;
+.back-face img {
+  width: 80%;
+  height: 80%;
 }
 
-.back-face{
-    transform: rotateY(-180deg);
+.back-face {
+  transform: rotateY(-180deg);
 }
 
-.front-face{
-    transform: rotateY(0eg);
+.front-face {
+  transform: rotateY(0eg);
 }
 
-.front-face.turn{
-    transform: rotateY(-180deg);
+.front-face.turn {
+  transform: rotateY(-180deg);
 }
 
-.back-face.turn{
-    transform: rotateY(0deg);
+.back-face.turn {
+  transform: rotateY(0deg);
 }
