@@ -1,12 +1,13 @@
 let arrayOfCards;
-const cardContainer = document.querySelector(".CARD-CONTAINER");
 let counterCardClicked = 0;
 let cardCardClicked1;
 let cardCardClicked2;
 let checkPair = [];
+
 startGame();
 
 function startGame() {
+  counterCardClicked = 0;
   let quantidadeCartas = prompt("Com quantas cartas deseja jogar?");
   if(quantidadeCartas>=4 && quantidadeCartas<=14 && quantidadeCartas%2===0){
     createCards(quantidadeCartas);
@@ -28,10 +29,6 @@ function checkGameFinished() {
   if (arrayOfCards.length === counter) {
     alert("Você ganhou em " + counterCardClicked + " jogadas!")
     askToPlayAgain()
-    return true
-  }
-  else {
-    return false
   }
 }
 
@@ -54,7 +51,7 @@ function askToPlayAgain() {
   }
 }
 
-function func(cardClicked) {
+function clickCard(cardClicked) {
   if (cardClicked.classList.contains("canClick") === true) {
     cardClicked.classList.add("cartaClicada");
     cardClicked.classList.remove("canClick");
@@ -88,7 +85,6 @@ function flipBack() {
       arrayOfCards[i].classList.add('canClick')
     }
   }
-
 }
 
 function checkTwoPair() {
@@ -105,7 +101,6 @@ function checkTwoPair() {
       arrayOfCards[i].classList.remove('canClick')
     }
   }
-
 }
 
 function createCards(numOfCards) {
@@ -115,21 +110,15 @@ function createCards(numOfCards) {
   for (i = 0; i < numOfCards / 2; i++) {
     const divNova = document.createElement("div");
     divNova.className = "card canClick";
-
-    divNova.setAttribute("onclick", "func(this)");
-
+    divNova.setAttribute("onclick", "clickCard(this)");
     const divFaceCard = document.createElement("div");
     divFaceCard.className = "front-face face";
-
     const faceCard = document.createElement("img");
     faceCard.src = `./resources/card_image.png`;
-
     const divVersoCard = document.createElement("div");
     divVersoCard.className = "back-face face";
-
     const versoCard = document.createElement("img");
     versoCard.src = `./resources/cards/${i}.gif`;
-
     divFaceCard.appendChild(faceCard);
     divVersoCard.appendChild(versoCard);
     divNova.appendChild(divFaceCard);
@@ -140,7 +129,7 @@ function createCards(numOfCards) {
   for (i = 0; i < numOfCards / 2; i++) {
     const divNova = document.createElement("div");
     divNova.className = "card canClick";
-    divNova.setAttribute("onclick", "func(this)");
+    divNova.setAttribute("onclick", "clickCard(this)");
 
     const divFaceCard = document.createElement("div");
     divFaceCard.className = "front-face face";
@@ -160,12 +149,12 @@ function createCards(numOfCards) {
     divNova.appendChild(divVersoCard);
     arrayOfCards2[i] = divNova;
   }
-
   //append the two halfs to make one deck with 2 equals cards of each.
   arrayOfCards = arrayOfCards1.concat(arrayOfCards2);
 }
 
 function addArrayToContainer() {
+  const cardContainer = document.querySelector(".CARD-CONTAINER");
   arrayOfCards.sort(comparador);
   for (i = 0; i < arrayOfCards.length; i++) {
     cardContainer.appendChild(arrayOfCards[i]);
@@ -183,7 +172,6 @@ function removeCards() {
   }
   clearArrayOfCards();
 }
-
 //private use to removeCards()
 function clearArrayOfCards() {
   const size = arrayOfCards.length;
