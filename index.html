@@ -1,35 +1,42 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Parrot Card Game</title>
-    <link rel="stylesheet" href="./css/reset.css" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-      rel="stylesheet"
-    />
-  </head>
 
-  <body>
-    <div class="SITE-CONTAINER">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parrot Card Game</title>
+  <link rel="stylesheet" href="./css/reset.css" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <div class="SITE-CONTAINER">
+    <div class="USER-CONTAINER">
+      <div class="clock-container">
+        <div class="clock hidden">
+          relógio
+        </div>
+      </div>
       <div class="titulo">PARROT CARD GAME</div>
       <div class="CARD-CONTAINER">
         <!--
-            <div class="card">
-                <div class="front-face face">
-                    <img src="./resources/card_image.png" alt="">
-                </div>
-                <div class="back-face face">
-                    <img src="./resources/cards/0.gif" alt="">
-                </div>
-            </div>-->
+      <div class="card canClick" onclick="clickCard(this)">
+        <div class="front-face face"><img src="./resources/card_image.png"></div>
+        <div class="back-face face"><img src="./resources/cards/${i}.gif"></div>
+      </div>
+-->
       </div>
     </div>
-    <script src="./js/script.js"></script>
-  </body>
+  </div>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="./js/script.js"></script>
+</body>
+
 </html>

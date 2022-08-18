@@ -1,22 +1,32 @@
-let arrayOfCards;
+let arrayOfCards = [];
 let counterCardClicked = 0;
-let cardCardClicked1;
-let cardCardClicked2;
-let checkPair = [];
-
+const checkPair = [];
+let actualClock = 0.00;
+const delay = 0.01;
+let clearIntervalName
 startGame();
 
+function updateClock() {
+  const clockDocument = document.querySelector('.clock');
+  actualClock += delay
+  clockDocument.innerHTML = actualClock.toFixed(2)+" segundos";
+}
+
 function startGame() {
+  const clockDocument = document.querySelector('.clock');
+  clockDocument.classList.remove('hidden');
+  actualClock = 0;
   counterCardClicked = 0;
   let quantidadeCartas = prompt("Com quantas cartas deseja jogar?");
-  if(quantidadeCartas>=4 && quantidadeCartas<=14 && quantidadeCartas%2===0){
+  if (quantidadeCartas >= 4 && quantidadeCartas <= 14 && quantidadeCartas % 2 === 0) {
     createCards(quantidadeCartas);
     addArrayToContainer();
   }
-  else{
+  else {
     alert("Você deve inserir valores pares entre 4 e 14.")
     startGame()
   }
+  clearIntervalName = setInterval(updateClock, 10)
 }
 
 function checkGameFinished() {
@@ -27,25 +37,38 @@ function checkGameFinished() {
     }
   }
   if (arrayOfCards.length === counter) {
-    alert("Você ganhou em " + counterCardClicked + " jogadas!")
+    alert("Você ganhou em " + counterCardClicked + " jogadas, com um tempo de " + actualClock.toFixed(2) + " segundos!")
     askToPlayAgain()
   }
 }
 
+function checkIfCanStopClock() {
+  let counter = 0
+  for (i = 0; i < arrayOfCards.length; i++) {
+    if (arrayOfCards[i].classList.contains('acertada') === true) {
+      counter++;
+    }
+  }
+  if (arrayOfCards.length === counter) {
+    clearInterval(clearIntervalName);
+  }
+}
+
 function askToPlayAgain() {
-  let answer = prompt("Você gostaria de jogar novamente?")
+  const answer = prompt("Você gostaria de jogar novamente?")
   if (answer === "sim") {
     removeCards();
     startGame();
   }
-  else if(answer==="não"){
-    let a = document.querySelector('.titulo');
+  else if (answer === "não") {
+    const a = document.querySelector('.titulo');
     a.innerHTML = "ESPERO QUE VOCÊ VENHA JOGAR NOVAMENTE, FOI UM PRAZER TER VOCÊ COMO JOGADOR!";
-    console.log(a.parentNode)
     a.parentNode.classList.add('centralizar-titulo')
     removeCards();
+    const clockDocument = document.querySelector('.clock');
+    clockDocument.classList.add('hidden')
   }
-  else{
+  else {
     alert("Digite apenas sim ou não");
     askToPlayAgain();
   }
@@ -73,11 +96,14 @@ function flipBack() {
   a.classList.remove("turn");
   b.classList.remove("turn");
   checkPair[0].classList.remove("cartaClicada");
+
   a = checkPair[1].children[0];
   b = checkPair[1].children[1];
   a.classList.remove("turn");
   b.classList.remove("turn");
   checkPair[1].classList.remove("cartaClicada");
+
+
   checkPair.pop();
   checkPair.pop();
   for (i = 0; i < arrayOfCards.length; i++) {
@@ -94,7 +120,8 @@ function checkTwoPair() {
     checkPair[1].classList.add("acertada");
     checkPair.pop();
     checkPair.pop();
-    setTimeout(checkGameFinished, 500)
+    setTimeout(checkGameFinished, 500);
+    checkIfCanStopClock();
   } else {
     setTimeout(flipBack, 1000);
     for (i = 0; i < arrayOfCards.length; i++) {
