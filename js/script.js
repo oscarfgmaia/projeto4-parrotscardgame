@@ -118,6 +118,8 @@ function checkTwoPair() {
     checkPair[0].querySelector(".back-face").innerHTML === checkPair[1].querySelector(".back-face").innerHTML) {
     checkPair[0].classList.add("acertada");
     checkPair[1].classList.add("acertada");
+    checkPair[0].classList.remove("cartaClicada");
+    checkPair[1].classList.remove("cartaClicada");
     checkPair.pop();
     checkPair.pop();
     setTimeout(checkGameFinished, 500);
