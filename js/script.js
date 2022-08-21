@@ -36,22 +36,22 @@ function startGame() {
     addArrayToContainer();
     switch (numOfCards) {
       case 4:
-        setTimeout(turnCardsAndStartGame, 180)
+        setTimeout(turnCardsAndStartGame, 200)
         break;
       case 6:
-        setTimeout(turnCardsAndStartGame, 280)
+        setTimeout(turnCardsAndStartGame, 300)
         break;
       case 8:
-        setTimeout(turnCardsAndStartGame, 380)
+        setTimeout(turnCardsAndStartGame, 400)
         break;
       case 10:
-        setTimeout(turnCardsAndStartGame, 480)
+        setTimeout(turnCardsAndStartGame, 500)
         break;
       case 12:
-        setTimeout(turnCardsAndStartGame, 580)
+        setTimeout(turnCardsAndStartGame, 600)
         break;
       default:
-        setTimeout(turnCardsAndStartGame, 680)
+        setTimeout(turnCardsAndStartGame, 700)
     }
   }
   else {
