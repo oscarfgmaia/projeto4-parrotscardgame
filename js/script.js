@@ -32,39 +32,26 @@ function startGame() {
   let quantidadeCartas = prompt("Com quantas cartas deseja jogar? (min: 4 max: 14)");
   if (quantidadeCartas >= 4 && quantidadeCartas <= 14 && quantidadeCartas % 2 === 0) {
     let numOfCards = createCards(quantidadeCartas);
+    numOfCards = parseInt(numOfCards)
     addArrayToContainer();
-    console.log(arrayOfCards)
     switch (numOfCards) {
       case 4:
-        setTimeout(turnCardsAndStartGame, 150)
+        setTimeout(turnCardsAndStartGame, 180)
         break;
       case 6:
-        setTimeout(turnCardsAndStartGame, 250)
+        setTimeout(turnCardsAndStartGame, 280)
         break;
       case 8:
-        setTimeout(turnCardsAndStartGame, 350)
+        setTimeout(turnCardsAndStartGame, 380)
         break;
       case 10:
-        setTimeout(turnCardsAndStartGame, 450)
+        setTimeout(turnCardsAndStartGame, 480)
         break;
       case 12:
-        setTimeout(turnCardsAndStartGame, 550)
+        setTimeout(turnCardsAndStartGame, 580)
         break;
       default:
-        setTimeout(turnCardsAndStartGame, 650)
-        break;
-    }
-    if (numOfCards <= 4) {
-      setTimeout(turnCardsAndStartGame, 100)
-    }
-    else if (numOfCards <= 6) {
-      setTimeout(turnCardsAndStartGame, 200)
-    }
-    else if (numOfCards <= 8) {
-      setTimeout(turnCardsAndStartGame, 300)
-    }
-    else {
-      setTimeout(turnCardsAndStartGame, 800)
+        setTimeout(turnCardsAndStartGame, 680)
     }
   }
   else {
