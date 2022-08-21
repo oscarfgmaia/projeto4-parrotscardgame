@@ -4,23 +4,68 @@ const checkPair = [];
 let actualClock = 0.00;
 const delay = 0.01;
 let clearIntervalName
-startGame();
+//document.addEventListener("DOMContentLoaded", startGame)
+window.addEventListener("load", startGame)
+
+//startGame();
 
 function updateClock() {
   const clockDocument = document.querySelector('.clock');
   actualClock += delay
-  clockDocument.innerHTML = actualClock.toFixed(2)+" segundos";
+  clockDocument.innerHTML = actualClock.toFixed(2) + " segundos";
 }
+function turnCardsAndStartGame() {
+  for (i = 0; i < arrayOfCards.length; i++) {
+    const front = arrayOfCards[i].querySelector('.front-face')
+    const back = arrayOfCards[i].querySelector('.back-face')
+    front.classList.remove("turn")
+    back.classList.remove("turn")
+    arrayOfCards[i].classList.add("canClick");
+  }
 
+}
 function startGame() {
   const clockDocument = document.querySelector('.clock');
   clockDocument.classList.remove('hidden');
   actualClock = 0;
   counterCardClicked = 0;
-  let quantidadeCartas = prompt("Com quantas cartas deseja jogar?");
+  let quantidadeCartas = prompt("Com quantas cartas deseja jogar? (min: 4 max: 14)");
   if (quantidadeCartas >= 4 && quantidadeCartas <= 14 && quantidadeCartas % 2 === 0) {
-    createCards(quantidadeCartas);
+    let numOfCards = createCards(quantidadeCartas);
     addArrayToContainer();
+    console.log(arrayOfCards)
+    switch (numOfCards) {
+      case 4:
+        setTimeout(turnCardsAndStartGame, 150)
+        break;
+      case 6:
+        setTimeout(turnCardsAndStartGame, 250)
+        break;
+      case 8:
+        setTimeout(turnCardsAndStartGame, 350)
+        break;
+      case 10:
+        setTimeout(turnCardsAndStartGame, 450)
+        break;
+      case 12:
+        setTimeout(turnCardsAndStartGame, 550)
+        break;
+      default:
+        setTimeout(turnCardsAndStartGame, 650)
+        break;
+    }
+    if (numOfCards <= 4) {
+      setTimeout(turnCardsAndStartGame, 100)
+    }
+    else if (numOfCards <= 6) {
+      setTimeout(turnCardsAndStartGame, 200)
+    }
+    else if (numOfCards <= 8) {
+      setTimeout(turnCardsAndStartGame, 300)
+    }
+    else {
+      setTimeout(turnCardsAndStartGame, 800)
+    }
   }
   else {
     alert("Você deve inserir valores pares entre 4 e 14.")
@@ -132,54 +177,36 @@ function checkTwoPair() {
   }
 }
 
-function createCards(numOfCards) {
-  const arrayOfCards1 = [];
-  const arrayOfCards2 = [];
+function populateHalfArray(numOfCards) {
+  const arrayOfCards = []
   //create first half of the deck
   for (i = 0; i < numOfCards / 2; i++) {
     const divNova = document.createElement("div");
-    divNova.className = "card canClick";
+    divNova.className = "card";
     divNova.setAttribute("onclick", "clickCard(this)");
     const divFaceCard = document.createElement("div");
-    divFaceCard.className = "front-face face";
+    divFaceCard.className = "front-face face turn";
     const faceCard = document.createElement("img");
     faceCard.src = `./resources/card_image.png`;
     const divVersoCard = document.createElement("div");
-    divVersoCard.className = "back-face face";
+    divVersoCard.className = "back-face face turn";
     const versoCard = document.createElement("img");
     versoCard.src = `./resources/cards/${i}.gif`;
     divFaceCard.appendChild(faceCard);
     divVersoCard.appendChild(versoCard);
     divNova.appendChild(divFaceCard);
     divNova.appendChild(divVersoCard);
-    arrayOfCards1[i] = divNova;
+    arrayOfCards[i] = divNova;
   }
-  //create second half of the deck
-  for (i = 0; i < numOfCards / 2; i++) {
-    const divNova = document.createElement("div");
-    divNova.className = "card canClick";
-    divNova.setAttribute("onclick", "clickCard(this)");
+  return arrayOfCards;
+}
 
-    const divFaceCard = document.createElement("div");
-    divFaceCard.className = "front-face face";
-
-    const faceCard = document.createElement("img");
-    faceCard.src = `./resources/card_image.png`;
-
-    const divVersoCard = document.createElement("div");
-    divVersoCard.className = "back-face face";
-
-    const versoCard = document.createElement("img");
-    versoCard.src = `./resources/cards/${i}.gif`;
-
-    divFaceCard.appendChild(faceCard);
-    divVersoCard.appendChild(versoCard);
-    divNova.appendChild(divFaceCard);
-    divNova.appendChild(divVersoCard);
-    arrayOfCards2[i] = divNova;
-  }
+function createCards(numOfCards) {
+  array1 = populateHalfArray(numOfCards)
+  array2 = populateHalfArray(numOfCards)
   //append the two halfs to make one deck with 2 equals cards of each.
-  arrayOfCards = arrayOfCards1.concat(arrayOfCards2);
+  arrayOfCards = array1.concat(array2);
+  return numOfCards;
 }
 
 function addArrayToContainer() {
